@@ -20,6 +20,12 @@ app.use(express.static(__dirname + '/views'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+app.get('/', function(req, res) {
+    res.render('index');
+});
+
+
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     db.collection('songs').insert({
