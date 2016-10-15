@@ -1,0 +1,73 @@
+doctype html
+html(lang='en')
+  head
+    head
+      script.
+        $(function() {
+        $.scrollify({
+        section : ".panels",
+        });
+        });
+      meta(charset='utf-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      meta(name='description', content='')
+      meta(name='author', content='')
+      meta(name='theme-color', content='#43A047')
+      meta(name='apple-mobile-web-app-status-bar-style', content='#FFAB00')
+      title This is our app
+      link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+      link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro', rel='stylesheet', type='text/css')
+      link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', type='text/css')
+      link(rel='stylesheet', href='css/animate.css', type='text/css')
+      link(rel='stylesheet', href='css/styles.css', type='text/css')
+      #loader-wrapper
+        #loader
+        .loader-section.section-left
+        .loader-section.section-right
+  body#page-top
+    nav#mainNav.navbar.navbar-default.navbar-fixed-top
+      .navbar-inner
+        .navbar-header
+          button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#nav-content')
+            i.fa.fa-bars.fa-2x(aria-hidden='true')
+        #nav-content.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a.page-scroll(href='#home') Home!
+            li
+              a.page-scroll(href='#raps') Rap!
+            li
+              a.page-scroll(href='#feed') Find Raps!
+    section#home.panels.container-fluid
+      .jumbotron.jumbotron-fluid.fadein
+        h2.section-heading
+          | This is our great app name! Also dw I&apos;ll make ux and design nicer later so that we can win the design prize I go tyou bois
+          3(<='', h2='')
+            hr.light
+      a(href='#raps')
+        i.fa.fa-chevron-down.animated.infinite.tada(aria-hidden='true')
+    section#raps.panels.container-fluid
+      h2.section-heading Rap with me!
+      hr
+      
+      form(action = '/submit', method = 'post')
+        input(type='text' placeholder="Your message here!" name='daMessage' required)
+      button(type='submit') Send!dieuihtidyhdutnehidutehidetidhtenhutdehuhdts
+    section#feed.panels
+      h2.section-heading Other People&apos;s raps!
+      hr
+      .wrapper
+        a(href='#', data-title='placeholder')
+          img(src='http://www.petsworld.in/blog/wp-content/uploads/2014/07/dog-sleeping-with-kitten.jpg')
+        |  
+        a(href='#', data-title='placeholder')
+          img(src='https://66.media.tumblr.com/tumblr_m9dd4g4tKg1rdxvywo1_500.jpg')
+        |  
+        a(href='#', data-title='placeholder')
+          img(src='http://static.boredpanda.com/blog/wp-content/uploads/2015/11/cute-snakes-wear-hats-101__700.jpg')
+  footer
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+    script(src='js/scripts.js')
+    script(src='js/scrollify.min.js')

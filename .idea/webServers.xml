@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d2e28f7d-edbb-400c-b2da-d460b0260deb" name="kipply" url="http://kipply.cf">
+        <fileTransfer host="kipply.cf" port="21" rootFolder="/public_html" password="dfe2dfcfdfc6dfc6dfc5df98df9adf9bdf98df98df9adf9bdf99df8bdf8bdf8bdf8b" username="kipply">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
