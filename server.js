@@ -34,15 +34,16 @@ app.get('/', function(req, res) {
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     name = req.body.name; 
-
+    var temp
     db.collection('songs').insert({"lyrics": lyrics, "name": name}, function(err,docsInserted){
-      var id = docsInserted.ops[0]._id
+      temp = docsInserted.ops[0]._id;
     });
+    id = temp;
 
     var options = {
       mode: 'text',
       scriptPath: './',
-      args: [id, lyrics, '3', '80']
+      args: [id, lyrics, '2', '80']
     };
 
 
