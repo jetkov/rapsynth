@@ -2,12 +2,22 @@ doctype html
 html(lang='en')
   head
     head
+      script(src='dist/sweetalert.min.js')
+      link(rel='stylesheet', type='text/css', href='dist/sweetalert.css')
       script.
         $(function() {
-        $.scrollify({
-        section : ".panels",
+          $.scrollify({
+          section : ".panels",
+          });
         });
-        });
+
+        function Player() {
+          var newDiv = document.createElement("div");
+
+          var newContent = document.createTextNode("Hi there and greetings!"); 
+          newDiv.appendChild(newContent); //add the text node to the newly created div. 
+
+        }
       meta(charset='utf-8')
       meta(http-equiv='X-UA-Compatible', content='IE=edge')
       meta(name='viewport', content='width=device-width, initial-scale=1')
@@ -62,8 +72,11 @@ html(lang='en')
       hr
       .wrapper
         for file in files
-          a(href='#', data-title=file)
+          a(href='javascript:Player();', data-title=file)
             img(src='https://source.unsplash.com/random')
+
+            audio(audio controls)
+              source(src='/synthesis/output/Text_mix.ogg', type='audio/ogg')
           | 
 
   footer

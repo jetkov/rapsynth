@@ -1,14 +1,15 @@
-
+  
 const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
+
+var https = require('https');
+var http = require('http');
 const fs = require('fs');
 const app = express();
 
 var PythonShell = require('python-shell');
-var http = require('http');
-
 MongoClient.connect('mongodb://secureUsername:securePassword@ds035623.mlab.com:35623/stickytunes', function(err, database){
   if (err) return console.log(err);
   db = database;
@@ -34,7 +35,7 @@ app.get('/', function(req, res) {
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     name = req.body.name; 
-    var temp
+    var temp;
     db.collection('songs').insert({"lyrics": lyrics, "name": name}, function(err,docsInserted){
       temp = docsInserted.ops[0]._id;
     });
