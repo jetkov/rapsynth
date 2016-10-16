@@ -1,4 +1,3 @@
 node_modules
-synthesis/lyrics/*
-synthesis/output/*
 synthesis/synth/*
+!synthesis/synth/README.md
