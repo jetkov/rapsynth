@@ -11,21 +11,25 @@ const app = express();
 
 var PythonShell = require('python-shell');
 
-var options = {
-  key: fs.readFileSync('./ssl/privkey.pem'),
-  cert: fs.readFileSync('./ssl/fullchain.pem')
-};
+// var options = {
+//   key: fs.readFileSync('./ssl/privkey.pem'),
+//   cert: fs.readFileSync('./ssl/fullchain.pem')
+// };
 
 
 MongoClient.connect('mongodb://secureUsername:securePassword@ds035623.mlab.com:35623/stickytunes', function(err, database){
   if (err) return console.log(err);
   db = database;
-  http.createServer(app).listen(80, function(){
-    console.log('listening for http on 80'); 
-  }); 
-  https.createServer(options, app).listen(443, function(){
-    console.log('listening for https on 443'); 
-  }); 
+  // http.createServer(app).listen(80, function(){
+  //   console.log('listening for http on 80'); 
+  // }); 
+  // https.createServer(options, app).listen(443, function(){
+  //   console.log('listening for https on 443'); 
+  // }); 
+    //UNCOMMENT THIS FOR SIMPLE TESTING
+   app.listen(3000, function(){
+     console.log('listening on 3000'); 
+   }); 
 
 });
 
@@ -37,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
 
-    fs.readdir('./synthesis/output', function(err, data){
+    fs.readdir('./views/output', function(err, data){
       res.render('index', {"files": data});
     });
 });
@@ -46,17 +50,18 @@ app.get('/', function(req, res) {
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     name = req.body.name; 
-    var temp;
+    var id;
     db.collection('songs').insert({"lyrics": lyrics, "name": name}, function(err,docsInserted){
-      var id = docsInserted.ops[0]._id
+      id = docsInserted.ops[0]._id;
+      // console.log(docsInserted.ops[0]._id);
     });
-
+    var rand = Math.floor(Math.random() * 4) + 1  
     var options = {
       mode: 'text',
       scriptPath: './',
-      args: [id, lyrics, '3', '80']
+      args: [id, lyrics, rand, '80']
     };
-
+    console.log(id);
 
     PythonShell.run('synthesize.py', options, function (err, results) {
       if (err) throw err;

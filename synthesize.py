@@ -6,7 +6,7 @@ import os
 ident = '0000';
 synth_dir = 'synthesis/synth/'
 bg_track_dir = 'synthesis/bg_tracks/'
-output_dir = 'synthesis/output/'
+output_dir = 'views/output/'
 
 bg_track_fn = ['0_to_100.mp3','black_and_yellow.mp3','hotline_bling.mp3','panda.mp3','rap_god.mp3']
 bg_track_bpm = ['89','164','135','145','148']
