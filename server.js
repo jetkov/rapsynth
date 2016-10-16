@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
+const fs = require('fs');
 const app = express();
 
 var http = require('http');
@@ -23,17 +24,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
 
-    fs.readdir(/synthesize/, function(err, data){
+    fs.readdir('./synthesis/output', function(err, data){
       res.render('index', {"files": data});
     });
-    res.render('index');
 });
 
 
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
+    name = req.body.name; 
     db.collection('songs').insert({
-        "lyrics": lyrics
+        "lyrics": lyrics,
+        "name": name
     });
     res.redirect('/');
 });
