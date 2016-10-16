@@ -1,2 +1,4 @@
-
 node_modules
+synthesis/lyrics/*
+synthesis/output/*
+synthesis/synth/*
