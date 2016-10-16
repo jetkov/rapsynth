@@ -1,3 +1,4 @@
 node_modules
+ssl
 synthesis/synth/*
 !synthesis/synth/README.md
