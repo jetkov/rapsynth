@@ -16,7 +16,6 @@ var options = {
   cert: fs.readFileSync('./ssl/fullchain.pem')
 };
 
-const app = express();
 
 MongoClient.connect('mongodb://secureUsername:securePassword@ds035623.mlab.com:35623/stickytunes', function(err, database){
   if (err) return console.log(err);
