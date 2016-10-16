@@ -32,21 +32,24 @@ app.get('/', function(req, res) {
 
 
 app.post('/submit', function(req, res) {
-    /*lyrics = req.body.lyrics;
+    lyrics = req.body.lyrics;
     name = req.body.name; 
     db.collection('songs').insert({
         "lyrics": lyrics,
         "name": name
-    });*/
+    }); 
+
     var options = {
       mode: 'text',
       scriptPath: './',
-      args: ['smpl_lyrics', '2', '80']
+      args: [name, lyrics, '3', '80']
     };
+
 
     PythonShell.run('synthesize.py', options, function (err, results) {
       if (err) throw err;
       // results is an array consisting of messages collected during execution
       console.log('results: %j', results);
+      res.end('Done!');
     });
 });

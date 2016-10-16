@@ -1,2 +1,3 @@
-
 node_modules
+synthesis/synth/*
+!synthesis/synth/README.md

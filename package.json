@@ -1,7 +1,7 @@
 {
-  "name": "thing",
+  "name": "stickytunes",
   "version": "1.0.0",
-  "description": "THing",
+  "description": "Rap Synthesis",
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.15.2",
