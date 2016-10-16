@@ -32,19 +32,16 @@ app.get('/', function(req, res) {
 
 
 app.post('/submit', function(req, res) {
-    lyrics = req.body.lyrics;
+    /*lyrics = req.body.lyrics;
     name = req.body.name; 
     db.collection('songs').insert({
         "lyrics": lyrics,
         "name": name
-    });
+    });*/
     var options = {
       mode: 'text',
-      pythonPath: '/usr/lib/python2.7',
-      
-  pythonOptions: ['-u'],
-      scriptPath: './synthesis/synthesize.py',
-      args: ['smpl_lyrics', '4', '80']
+      scriptPath: './',
+      args: ['smpl_lyrics', '2', '80']
     };
 
     PythonShell.run('synthesize.py', options, function (err, results) {
@@ -52,6 +49,4 @@ app.post('/submit', function(req, res) {
       // results is an array consisting of messages collected during execution
       console.log('results: %j', results);
     });
-
-    res.redirect('/');
 });
