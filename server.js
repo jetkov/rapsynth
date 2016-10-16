@@ -26,7 +26,7 @@ MongoClient.connect('mongodb://secureUsername:securePassword@ds035623.mlab.com:3
   // https.createServer(options, app).listen(443, function(){
   //   console.log('listening for https on 443'); 
   // }); 
-    //UNCOMMENT THIS FOR SIMPLE TESTING
+    //UNCOMMENT THIS FOR LOCAL 30000
    app.listen(3000, function(){
      console.log('listening on 3000'); 
    }); 
@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
 
-    fs.readdir('./views/output', function(err, data){
+    fs.readdir('./views/output/', function(err, data){
       res.render('index', {"files": data});
     });
 });
@@ -50,18 +50,19 @@ app.get('/', function(req, res) {
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     name = req.body.name; 
-    var id;
+    var temp;
     db.collection('songs').insert({"lyrics": lyrics, "name": name}, function(err,docsInserted){
-      id = docsInserted.ops[0]._id;
-      // console.log(docsInserted.ops[0]._id);
+      temp = docsInserted.ops[0]._id;
+      console.log(temp);
     });
+    var id = String(temp);
     var rand = Math.floor(Math.random() * 4) + 1  
     var options = {
       mode: 'text',
       scriptPath: './',
       args: [id, lyrics, rand, '80']
     };
-    console.log(id);
+
 
     PythonShell.run('synthesize.py', options, function (err, results) {
       if (err) throw err;

@@ -74,9 +74,8 @@ html(lang='en')
         for file in files
           a(href='javascript:Player();', data-title=file)
             img(src='https://source.unsplash.com/random')
-
             audio(audio controls)
-              source(src='/output/'+file, type='audio/ogg')
+              source(src='/output/'+file, type='audio/mpeg')
           | 
 
   footer
