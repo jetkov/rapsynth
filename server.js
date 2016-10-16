@@ -1,20 +1,28 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
-const fs = require('fs');
-const app = express();
-
-var PythonShell = require('python-shell');
+var https = require('https');
 var http = require('http');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('./ssl/privkey.pem'),
+  cert: fs.readFileSync('./ssl/fullchain.pem')
+};
+
+const app = express();
 
 MongoClient.connect('mongodb://secureUsername:securePassword@ds035623.mlab.com:35623/stickytunes', function(err, database){
   if (err) return console.log(err);
   db = database;
-  app.listen(3000, function(){
-    console.log('listening on 3000'); 
+  http.createServer(app).listen(80, function(){
+    console.log('listening for http on 80'); 
   }); 
+  https.createServer(options, app).listen(443, function(){
+    console.log('listening for https on 443'); 
+  }); 
+
 });
 
 app.set('view engine', 'pug');
@@ -34,16 +42,15 @@ app.get('/', function(req, res) {
 app.post('/submit', function(req, res) {
     lyrics = req.body.lyrics;
     name = req.body.name; 
-    var temp
+
     db.collection('songs').insert({"lyrics": lyrics, "name": name}, function(err,docsInserted){
-      temp = docsInserted.ops[0]._id;
+      var id = docsInserted.ops[0]._id
     });
-    id = temp;
 
     var options = {
       mode: 'text',
       scriptPath: './',
-      args: [id, lyrics, '2', '80']
+      args: [id, lyrics, '3', '80']
     };
 
 
@@ -54,3 +61,4 @@ app.post('/submit', function(req, res) {
       res.redirect('/');
     });
 });
+
