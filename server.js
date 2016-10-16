@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get('/', function(req, res) {
-  
-    fs.readdir(path, function(err, data){
+
+    fs.readdir(/synthesize/, function(err, data){
       res.render('index', {"files": data});
     });
     res.render('index');
