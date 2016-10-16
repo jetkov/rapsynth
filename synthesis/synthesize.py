@@ -25,9 +25,9 @@ try:
 except IndexError:
 	pass
 
-os.system('rm '+synth_dir+'*') 
+os.system('rm ' + synth_dir + '*') 
 
-os.system('espeak -f'+lyric_dir+lyric_fn+' -p'+pitch+' -s'+bg_track_bpm[bg_track]+' -w'+synth_dir+lyric_fn+'.wav')
-os.system('sox '+synth_dir+lyric_fn+'.wav '+synth_dir+lyric_fn+'b.wav speed 0.5')
-os.system('sox -r 44100 '+synth_dir+lyric_fn+'b.wav '+synth_dir+lyric_fn+'c.wav')
-os.system('sox -M '+bg_track_dir+bg_track_fn[bg_track]+' '+synth_dir+lyric_fn+'c.wav '+output_dir+lyric_fn+'_mix.ogg')
+os.system('espeak -f' + lyric_dir + lyric_fn + ' -p' + pitch + ' -s' + bg_track_bpm[bg_track] + ' -w' + synth_dir + lyric_fn + '.wav')
+os.system('sox ' + synth_dir + lyric_fn + '.wav ' + synth_dir + lyric_fn + 'b.wav speed 0.5')
+os.system('sox -r 44100 ' + synth_dir + lyric_fn + 'b.wav ' + synth_dir+lyric_fn + 'c.wav')
+os.system('sox -M ' + bg_track_dir + bg_track_fn[bg_track] + ' ' + synth_dir + lyric_fn + 'c.wav ' + output_dir + lyric_fn + '_mix.ogg')
